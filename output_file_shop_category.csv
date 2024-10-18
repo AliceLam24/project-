@@ -1,0 +1,15 @@
+id,name,slug,shop_id,image
+1,Cat,cat,4,catagories/b.jpg
+2,Dog,dog,4,catagories/Christy.jpg
+3,Cooking Course 1,cooking-course-1,2,""
+4,Chinese Style,chinese-style,3,catagories/jumboicecream.jpg
+5,English Style,english-style,3,catagories/Anmitsuyokanjapanesesweets_Gw0cGus.jpg
+6,Easy,easy,3,""
+7,Intermediate,intermediate,3,""
+8,Difficult,difficult,3,""
+9,"Cheese Cake","CheeseCake",1,""
+10,"Chocolate Cake","ChocolateCake",1,""
+11,"Napoleon","Napoleon",1,""
+12,"Sponge/Cream cake","SpongeCreamCake",1,""
+13,"Tart","Tart",1,""
+14,"Customize Cake","CustomizeCake",1,""

@@ -1,0 +1,2 @@
+id,name,slug,contents,start_date_time,end_date_time,location,quota,filled_place,available,last_modified,modified_by,instructor_id,menu_name_id,product_id_id,studio_name_id
+3,Moon Cake with Alice,moon-cake-with-alice,Moon Cake with Alice Desc,2024-10-17 14:00:00+08,2024-10-17 15:00:00+08,Kowloon,20,0,t,2024-10-03 22:28:36.40017+08,admin,2,1,7,1

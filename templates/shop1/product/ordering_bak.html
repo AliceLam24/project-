@@ -1,0 +1,96 @@
+{% extends "shop1/base.html" %}
+{% load humanize %}
+{% load static %}
+
+{% block title %}
+Your shopping cart
+{% endblock %}
+
+{% block content %}
+<!-- Start: Page Header -->
+<section id="showcase-inner" class="py-5 text-white">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-12" style="background-color: #e5c9a3;">
+                <h1 class="display-4">Your shopping cart</h1>
+                <p class="lead">
+                    {% if Msg %}{{ Msg }}{% endif %}
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End: Page Header -->
+
+<!-- Start: Breadcrumb -->
+<section id="bc" class="mt-3">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="/shop1/"><i class="fas fa-home"></i> Order Cakes</a>
+                </li>
+                <li class="breadcrumb-item active">Shopping Cart</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+<!-- End: Breadcrumb -->
+
+<!-- Start: Loading Table -->
+<!-- {% if Orderings %} -->
+<table class="cart">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Remove</th>
+            <th>Unit price</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item_id, item in session_data.cart.items %}
+            {% with product=item.product %}
+            <tr>
+                <td>
+                    <a href="{{ product.get_absolute_url }}">
+                        <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}">
+                    </a>
+                </td>
+                <td>{{ product.name }}</td>
+                <td>
+                    <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                        {{ item.update_quantity_form.quantity }}
+                        {{ item.update_quantity_form.override }}
+                        <input type="submit" value="Update">
+                        {% csrf_token %}
+                    </form>
+                </td>
+                <td>
+                    <form action="{% url 'cart:cart_remove' product.id %}" method="post">
+                        <input type="submit" value="Remove">
+                        {% csrf_token %}
+                    </form>
+                </td>
+                <td class="num">${{ item.price }}</td>
+                <td class="num">${{ item.total_price }}</td>
+            </tr>
+            {% endwith %}
+        {% endfor %}
+        <tr class="total">
+            <td>Total</td>
+            <td colspan="4"></td>
+            {% comment %} <td class="num">${{ cart.get_total_price }}</td> {% endcomment %}
+            <td class="num">$cart.get_total_price </td>
+        </tr>
+    </tbody>
+</table>
+<p class="text-right">
+    <a href="{% url 'shop:index' %}" class="buttonlight">Continue shopping</a>
+    <a href="{% url 'orders:order_create' %}" class="button">Checkout</a>
+</p>
+<!--{% endif %} -->
+<!-- End: Loading Table -->
+{% endblock %}

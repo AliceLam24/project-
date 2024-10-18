@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Available Course Sessions{% endblock %}
+{% block content %}
+<div class="background">
+    <div class="container mt-0">
+        <h1 class="text-center">Available Course Sessions</h1>
+        <div class="row">
+            {% for session in course_sessions %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ session.name }}</h5>
+                            <p class="card-text">{{ session.contents }}</p>
+                            <p class="card-text">
+                                <strong>Instructor:</strong> {{ session.instructor.name }}<br>
+                                <strong>Location:</strong> {{ session.location }}<br>
+                                <strong>Start:</strong> {{ session.start_date_time }}<br>
+                                <strong>Quota:</strong> {{ session.quota }} | <strong>Filled:</strong> {{ session.filled_place }}
+                            </p>
+                            <a href="{{ session.get_absolute_shop2_url }}" class="btn btn-primary">Select Session</a>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <p>No available course sessions at the moment.</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% block extra_css %}
+<style>
+    .background {
+        background-image: url("{% static 'img/shop4-detail-background.jpg' %}");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 200vh;
+        position: relative;
+    }
+
+    .card-img-top {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+</style>
+{% endblock %}
+{% endblock %}

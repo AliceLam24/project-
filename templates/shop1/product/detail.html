@@ -1,0 +1,440 @@
+{% extends "shop1/base.html" %}
+{% comment %} {% extends 'base.html' %} {% endcomment %}
+{% load humanize %}
+{% load static %}
+
+{% block title %}
+  {% if category %}{{ category.name }} | {{ product.name }} {% else %}{% endif %}
+{% endblock %}
+
+{% block content %}
+{% if product %}
+
+<!-- Start: Page Header -->
+  <section id="showcase-inner" class="py-5 text-white">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-12" style="background-color: #e5c9a3;">
+          <h1 class="display-4">{{ product.name }}</h1>
+          <p class="lead">
+            {{ product.description }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+<!-- End: Page Header -->
+
+<!-- Breadcrumb -->
+<!-- Start: Page List  -->
+<!-- Breadcrumb -->
+<section id="bc" class="mt-0">
+  <div class="container">
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <i class="fas fa-home"></i>
+          <a href="/shop1/">Order Cakes</a>
+        </li>
+        <li class="breadcrumb-item">
+          <a href="{% url 'shop1:category_list' category.id %}">Catalog: {{category.name}} </a>
+        </li>
+        <li class="breadcrumb-item active">{{product.name}}</li>
+      </ol>
+    </nav>
+  </div>
+</section>
+
+
+{% else %}
+<div class="col-md-12">
+<p>No Available Item</p>
+</div>
+{% endif %}
+
+
+<!-- End: Page List  -->
+{% comment %} >% include 'partials/_alert.html' %} {% endcomment %}
+<!-- Listing -->
+<section id="listing" class="py-4">
+  <div class="container">
+    <a href="/shop1/" class="btn btn-light mb-3">Back To Cakes</a>
+    <div class="row">
+      <!-- Default: <div class="col-md-9">-->
+      <div class="col-md-5">
+        <!-- Home Main Image -->
+        <img
+          src={{product.image.url}}
+          alt=""
+          class="img-main img-fluid mb-3"
+        />
+        <div class="card text-center">
+  <div class="card-header">
+      <ul class="nav nav-tabs card-navbar-tabs">
+          <!--<li class="nav-item"><a href="" class="nav-link active">ABC</a></li>-->
+          <!--<li class="nav-item"><a href="" class="nav-link">Link</a></li>-->
+          <!--<li class="nav-item"><a href="" class="nav-link disabled">disabled</a></li>-->
+          <li class="nav-item"><span class="nav-link active">Contain allergen ingredients as below</span></li>
+      </ul>
+  </div>
+  <div class="card-body">
+  <!--<h4 class="card-title">Card Title</h4>-->
+  <!--<h4 class="card-subtitle text-muted">Card Subtitle</h4>-->
+  <p class="card-text">
+    {% if ProductDetail_Item %}
+    {% for item in ProductDetail_Item %}
+    {{item.allergen}}
+    {% endfor %}
+    {% endif %}
+  </p>
+  <!--<a href="" class="btn btn-outline-primary">Read More</a>-->
+  <!--<div class="card-footer text-muted">2 days ago</div>-->
+  </div>
+</div>
+<section id="listing" class="py-4">
+<!--Tab: Shops location-->
+<div class="card text-center">
+  <div class="card-header">
+      <ul class="nav nav-tabs card-navbar-tabs">
+          <li class="nav-item"><span class="nav-link active">Store location : </span></li>
+      </ul>
+  </div>
+  <div class="card-body">
+  <p class="card-text">
+    <p style="text-align: left;">
+      <span style="background-color: #ced4da; padding: 5px; border-radius: 4px; font-family: Arial, sans-serif;">
+      [Hong Kong Island] Fortress Hill </span>
+      <br />
+      M/F, Greenwich Centre, No.260 King's Road, Fortress Hill, Hong Kong
+      <small class="form-text text-muted" style="text-align: right;background-color: #f9f5f5; padding: 5px; border-radius: 4px; font-family: Arial, sans-serif;">
+        MTR station: Fortress Hill (Exit B)</small>
+    </p>
+  </p>
+  <hr>
+  <p class="card-text">
+    <p style="text-align: left;">
+      <span style="background-color: #ced4da; padding: 5px; border-radius: 4px; font-family: Arial, sans-serif;">
+        [Kowloon] Mei Foo </span>
+        <br />
+      G/F, Phase 7, Mount Sterling Mall, Mei Foo, Kowloon  
+      <small class="form-text text-muted" style="text-align: right;background-color: #f9f5f5; padding: 5px; border-radius: 4px; font-family: Arial, sans-serif;">
+        MTR station: Mei Foo (Exit E)</small>
+    </p>
+  </p>
+  <hr>
+  <p class="card-text">
+    <p style="text-align: left;">
+      <span style="background-color: #ced4da; padding: 5px; border-radius: 4px; font-family: Arial, sans-serif;">
+        [New Territories] Tseung Kwan O </span>
+        <br />
+      Shop no. 1A, level 6, East Point City, 8 Chung Wa Road, Tseung Kwan O
+      <small class="form-text text-muted" style="text-align: right;background-color: #f9f5f5; padding: 5px; border-radius: 4px; font-family: Arial, sans-serif;">
+        MTR station: Hang Hau (Exit A1)</small>      
+    </p>
+  </p>
+  <!--<a href="" class="btn btn-outline-primary">Read More</a>-->
+  <div class="card-footer text-muted">
+    Store Business Hours : <br />
+    (Daily) 10am - 9pm</div>
+  </div>
+</div>
+</section>
+        <!-- Description -->
+        {% comment %} <div class="row mb-5">
+          <div class="col-md-12">{{product.description}}
+          </div>
+        </div> {% endcomment %}
+      </div>
+       <!-- Default: <div class="col-md-3">-->
+       <!-- Default: <div class="card mb-3">-->
+      <div class="col-md-7">
+        <div class="card mb-7">
+        <!--Start: Realtor Name & Img -->  
+          {% comment %} <img
+            class="card-img-top"
+            src={{listing.realtor.photo.url}}
+            alt="Seller of the month"
+          />
+          <div class="card-body">
+            <h5 class="card-title">Property Realtor</h5>
+            <h6 class="text-secondary">{{listing.realtor}}</h6>
+          </div> {% endcomment %}
+        <!--End: Realtor Name & Img -->  
+<!--Tab: Ordering-->
+<form method="post" action="{% url 'shop1:ordering' product.id product.category_id %}">  
+<div class="card text-center">
+  <h4 class="card-title text-center">{{product.name}}</h4>
+  <div class="card-header">
+      <ul class="nav nav-tabs card-navbar-tabs">
+          <li class="nav-item"><span class="nav-link active">Choosing Your Cake</span></li>
+      </ul>
+  </div>
+  <div class="card-body">
+  <!--<h4 class="card-title">Card Title</h4>-->
+  <!--<h4 class="card-subtitle text-muted">Card Subtitle</h4>-->
+  <p class="card-text">
+    <!--Select-->            
+    <!--<label>Cake</label>-->
+    <select name="CakeSizeWeightPrice" class="form-control">
+      {% if ProductDetail_Item %}
+      {% for item in ProductDetail_Item %}      
+       <option value="{{item.First_size}}/{{item.First_weight}}/{{item.First_desc}}/{{item.First_price}}">Size:{{item.First_size}} / Weight:{{item.First_weight}} / {{item.First_desc}} / ${{item.First_price}}</option>
+       <option value="{{item.Second_size}}/{{item.Second_weight}}/{{item.Second_desc}}/{{item.Second_price}}">Size:{{item.Second_size}} / Weight:{{item.Second_weight}} / {{item.Second_desc}} / ${{item.Second_price}}</option>
+       <option value="{{item.Third_size}}/{{item.Third_weight}}/{{item.Third_desc}}/{{item.Third_price}}">Size:{{item.Third_size}} / Weight:{{item.Third_weight}} / {{item.Third_desc}} / ${{item.Third_price}}</option>
+       <option value="{{item.Fourth_size}}/{{item.Fourth_weight}}/{{item.Fourth_desc}}/{{item.Fourth_price}}">Size:{{item.Fourth_size}} / Weight:{{item.Fourth_weight}} / {{item.Fourth_desc}} / ${{item.Fourth_price}}</option>
+      <!--{% for key,value in bedroom_choices.items %}-->
+      <!-- <option value="{{key}}">{{value}}</option>-->
+      <!--{% endfor %}-->
+      {% endfor %}
+      {% endif %}
+    </select>
+
+    <p style="text-align: left;">
+      <select name="Qty" class="form-control">
+         <option value="1">Qty: 1</option>
+         <option value="2">Qty: 2</option>
+         <option value="3">Qty: 3</option>
+         <option value="4">Qty: 4</option>
+         <option value="5">Qty: 5</option>
+      </select>
+    </p>
+  </p>
+  <!--<a href="" class="btn btn-outline-primary">Read More</a>-->
+  <!--<div class="card-footer text-muted">2 days ago</div>-->
+  </div>
+</div>
+<!--EndTab: Ordering-->
+<!--Tab: Pickup/Delivery-->
+<div class="card text-center">
+  <div class="card-header">
+      <ul class="nav nav-tabs card-navbar-tabs">
+          <li class="nav-item"><span class="nav-link active">Pickup / Delivery</span></li>
+      </ul>
+  </div>
+  <div class="card-body">
+  <!--<h4 class="card-title">Card Title</h4>-->
+  <!--<h4 class="card-subtitle text-muted">Card Subtitle</h4>-->
+  <p style="text-align: left;">Contact Person<small class="form-text text-muted"  style="text-align: right;"> * required field</small>
+  <input type="text" class="form-control form-control-sm" name="ContactPerson" placeholder="Enter Contact Person" required/>
+  </p>
+  <p style="text-align: left;">
+    Contact Number<small class="form-text text-muted"  style="text-align: right;"> * required field</small>
+  <input type="text" class="form-control form-control-sm" name="ContactNumber" placeholder="Enter Contact Number" pattern="[0-9]{8}" maxlength="8" required/>
+  </p>
+  <p style="text-align: left;">
+    Contact Email<small class="form-text text-muted"  style="text-align: right;"> * required field</small>
+  <input type="email" class="form-control form-control-sm" name="ContactEmail" placeholder="Enter eMail" required/>
+  </p>
+    <!--Select-->            
+  <p style="text-align: left;">Pickup In / Delivery To
+    <select name="PickupDelivery" class="form-control">
+       <option value="Pickup In Store: Fortress Hill [Hong Kong Island] /0">Pickup In Store: Fortress Hill [Hong Kong Island]</option>
+       <option value="Pickup In Store: Mei Foo [Kowloon] /0">Pickup In Store: Mei Foo [Kowloon]</option>
+       <option value="Pickup In Store: Tseung Kwan O [New Territories] /0">Pickup In Store: Tseung Kwan O [New Territories]</option>
+       <option value="Delivery To - Hong Kong Island /0">Delivery To - Hong Kong Island</option>
+       <option value="Delivery To - Kowloon /0">Delivery To - Kowloon</option>
+       <option value="Delivery To - NewTerritories /0">Delivery To - NewTerritories</option>
+       <option value="Delivery To - Islands /0">Delivery To - Islands</option>
+       <!--<option value="Delivery To - Hong Kong Island [ additional charges: + $200 ] /200">Delivery To - Hong Kong Island [ additional charges: + $200 ]</option>-->
+       <!--<option value="Delivery To - Kowloon [ additional charges: + $200 ] /200">Delivery To - Kowloon [ additional charges: + $200 ]</option>-->
+       <!--<option value="Delivery To - NewTerritories [ additional charges: + $250 ] /250">Delivery To - NewTerritories [ additional charges: + $250 ]</option>-->
+       <!--<option value="Delivery To - Islands [ additional charges: + $350 ] /350">Delivery To - Islands [ additional charges: + $350 ]</option>-->
+    </select>
+  </p>
+  <p style="text-align: left;">Date [<font color="red"> Fastest</font> pickup / delivery date on <b>{{fastest}}</b>]
+  <select name="PickupDeliveryDate" class="form-control">
+  {% if DeliveryDate.items %}
+  {% for key,value in DeliveryDate.items %}
+  <option value="{{key}}">{{value}}</option>
+  {% endfor %}
+  {% endif %}
+  </select>
+  <p style="text-align: left;">Time
+  <select name="PickupDeliveryTime" class="form-control">
+    <option value="10am - 2pm">10am - 2pm</option>
+    <option value="2pm - 6pm">2pm - 6pm</option>
+    <option value="6pm - 9pm">6pm - 9pm</option>
+  </select>
+  </p>
+  <p style="text-align: left;">
+    Delivery Address<small class="form-text text-muted"  style="text-align: right;"> * required field</small>
+  <input type="text" class="form-control form-control-sm" name="DeliveryAddress" placeholder="Enter Contact Person" />
+</p>
+<button class="btn btn-secondary btn-block mt-4" type="submit">Add to cart</button>
+{% csrf_token %}
+</form>
+</p>
+  <!--<a href="" class="btn btn-outline-primary">Read More</a>-->
+  <!--<div class="card-footer text-muted">2 days ago</div>-->
+  </div>
+</div>
+<!--EndTab: Pickup/Delivery-->
+
+
+
+<!--Tab: Pickup / Delivery-->
+{% comment %} <section id="showcase">
+  <div class="container text-center">
+    <div class="home-search p-5">
+      <!--Grey Box<div class="overlay p-5">-->
+        <!--<h1 class="display-4 mb-4">Property Searching Just Got So Easy</h1>-->
+        <!--<p class="lead">
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Recusandae
+          quas, asperiores eveniet vel nostrum magnam voluptatum tempore!
+          Consectetur, id commodi!
+        </p>-->
+        <div class="search">
+          <form action="#">
+            <!-- Form Row 1 -->
+            <div class="form-row">
+              <div class="col-md-4 mb-3">
+                <label class="sr-only">Keywords</label>
+                <input
+                  type="text"
+                  name="keywords"
+                  class="form-control"
+                  placeholder="Keyword (Bathrooms, ClubHouse, etc)"
+                />
+              </div>
+
+              <div class="col-md-4 mb-3">
+                <label class="sr-only">Title</label>
+                <input
+                  type="text"
+                  name="title"
+                  class="form-control"
+                  placeholder="Title"
+                />
+              </div>
+
+              <div class="col-md-4 mb-3">
+                <label class="sr-only">District</label>
+                <select name="District" class="form-control">
+                  <option selected="true" disabled="disabled">
+                    District (All)
+                  </option>
+                  {% for key,value in district_choices.items %}
+                  <option value="{{key}}">{{value}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+            <!-- Form Row 2 -->
+            <div class="form-row">
+              <div class="col-md-6 mb-3">
+                <label class="sr-only">Bedrooms</label>
+                <select name="bedrooms" class="form-control">
+                  <option selected="true" disabled="disabled">
+                    Bedrooms (All)
+                  </option>
+                   {% for key,value in bedroom_choices.items %}
+                  <option value="{{key}}">{{value}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="col-md-6 mb-3">
+                <select name="price" class="form-control" id="type">
+                  <option selected="true" disabled="disabled">
+                    Max Price (Any)
+                  </option>
+                  {% for key,value in price_choices.items %} 
+                  <option value="{{key}}">{{value}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+            <button class="btn btn-secondary btn-block mt-4" type="submit">
+              Submit form
+            </button>
+          </form>
+        </div>
+      <!--</div>-->
+    </div>
+  </div>
+</section> {% endcomment %}
+<!--End: Pickup/Delivery-->
+</div>
+<!--End: Form Ordering-->
+
+        </div>
+        
+        <!--Start: Button - Make An Inquiry-->
+        {% comment %} <button
+          class="btn-primary btn-block btn-lg"
+          data-toggle="modal"
+          data-target="#inquiryModal"
+        >
+          Make An Inquiry
+        </button> {% endcomment %}
+        <!--End: Button - Make An Inquiry-->
+      </div>
+    </div>
+  </div>
+</section>
+
+{% comment %} <!-- Inquiry Modal -->
+<div class="modal fade" id="inquiryModal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="inquiryModalLabel">Make An Inquiry</h5>
+        <button type="button" class="close" data-dismiss="modal">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="{% url 'contact' %}" method="POST">
+          {% csrf_token %}
+          {% if user.is_authenticated %}
+          <input type='hidden' name='user_id' value="{{user.id}}" />
+          {% else %}
+          <input type='hidden' name='user_id' value="0" />
+          {% endif %}
+          <!--add realtor email-->
+          <input type='hidden' name="realtor_email" value="{{listing.realtor.email}}"/>
+          <input type='hidden' name="listing_id" value="{{listing.id}}" />
+          <div class="form-group">
+            <label for="property_name" class="col-form-label">Property:</label>
+            <input
+              type="text"
+              name="listing"
+              class="form-control"
+              value="{{listing.title}}"
+            />
+          </div>
+          <div class="form-group">
+            <label for="name" class="col-form-label">Name:</label>
+            <input type="text" name="name" class="form-control" 
+            {% if user.is_authenticated %}
+            value="{{user.first_name}} {{user.last_name}}"
+            {% endif %}
+            required />
+          </div>
+          <div class="form-group">
+            <label for="email" class="col-form-label">Email:</label>
+            <input type="email" name="email" class="form-control" 
+           {% if user.is_authenticated %}
+            value="{{user.email}}"
+            {% endif %} 
+            required />
+          </div>
+          <div class="form-group">
+            <label for="phone" class="col-form-label">Phone:</label>
+            <input type="text" name="phone" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="message" class="col-form-label">Message:</label>
+            <textarea name="message" class="form-control"></textarea>
+          </div>
+          <hr />
+          <input
+            type="submit"
+            value="Send"
+            class="btn btn-block btn-secondary"
+          />
+        </form>
+      </div>
+    </div>
+  </div>
+</div> {% endcomment %}
+{% endblock %}

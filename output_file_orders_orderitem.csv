@@ -1,0 +1,41 @@
+id,shop_id,price,quantity,studio_name,guests,product_desc,username,order_id,product_id,lasting_hours,related_order_id,booking_date
+3,1,20.00,1,,,Small Cat,"",5,2,0,0,2024-10-04 21:27:09.732146+08
+4,1,100.00,1,,,"Moon Cake with Alice
+Alice
+Kowloon
+17-Oct-24 06:00","",5,7,0,0,2024-10-04 21:27:09.732146+08
+5,1,200.00,2,Mong Kong,1,"Mook Cake
+Mong Kong
+2024-10-17
+13:00-16:00
+1
+","",5,8,0,0,2024-10-04 21:27:09.732146+08
+6,1,200.00,2,Mong Kong,1,"Mook Cake
+Mong Kong
+2024-10-25
+11:00-14:00
+1
+","",7,8,0,0,2024-10-04 21:28:12.734268+08
+7,1,300.00,1,Mong Kong,1,"Afternoon Tea Cake
+Mong Kong
+2024-10-23
+12:00-15:00
+1
+","",8,9,0,0,2024-10-04 22:18:21.580936+08
+8,1,200.00,1,Mong Kong,1,"Mook Cake
+Mong Kong
+2024-10-11
+13:00-16:00
+1
+","",9,8,0,0,2024-10-05 09:04:33.399028+08
+9,1,20.00,1,,,Small Cat,"",10,2,0,0,2024-10-05 10:06:46.250801+08
+10,1,100.00,2,,,"Moon Cake with Alice
+Alice
+Kowloon
+17-Oct-24 06:00","",10,7,0,0,2024-10-05 10:06:46.256477+08
+11,1,200.00,1,Mong Kong,1,"Mook Cake
+Mong Kong
+2024-10-24
+13:00-16:00
+1
+","",10,8,0,0,2024-10-05 10:06:46.260929+08
